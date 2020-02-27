@@ -31,6 +31,8 @@ import { SplashComponent } from './splash/splash.component';
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuard, AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { CreateuserComponent } from './users/createuser/createuser.component';
+import { CoreService } from './core/core.service';
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { AngularFireAuthGuard, AngularFireAuthGuardModule } from '@angular/fire/
     IncidentsComponent,
     MessagesComponent,
     SplashComponent,
+    CreateuserComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { AngularFireAuthGuard, AngularFireAuthGuardModule } from '@angular/fire/
     FormsModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    CoreService
   ],
   bootstrap: [AppComponent]
 })

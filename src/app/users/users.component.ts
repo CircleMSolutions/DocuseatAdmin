@@ -3,7 +3,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from '../store/reducers/auth.reducer';
 import * as firebase from 'firebase/app'
 import 'firebase/functions'
-import { NgForm } from '@angular/forms'
 import { AuthService } from '../core/auth.service';
 
 interface CCUser extends User {
@@ -29,7 +28,6 @@ export class UsersComponent implements OnInit {
   scMessage: string
   scUser: CCUser
   isSetting: boolean
-  createState$: BehaviorSubject<IAsyncState> = new BehaviorSubject({isSetting: false, message: ''})
 
   constructor(private core: AuthService) { }
 
@@ -81,22 +79,6 @@ export class UsersComponent implements OnInit {
       .catch(err => {
         this.isSetting = false
         this.gcMessage = err
-      })
-  }
-
-  createUser(form: NgForm) {
-    this.createState$.next({isSetting: true, message: ''})
-    if (form.value.pwd !== form.value.confirmpwd) {
-      this.createState$.next({isSetting: false, message: 'Confirm password does not match'})
-      return
-    }
-    this.core.createUser(form.value.email, form.value.pwd)
-    .then(result => {
-      this.createState$.next({isSetting: false, message: result})
-    })
-    .catch(error => {
-      this.createState$.next({isSetting: false, message: 'Unhandled Error'})
-        console.log(error)
       })
   }
 }

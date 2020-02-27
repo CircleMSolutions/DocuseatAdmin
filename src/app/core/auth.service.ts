@@ -54,20 +54,6 @@ export class AuthService {
    resetPassword(email) {
     return this.afAuth.auth.sendPasswordResetEmail(email)
    }
-
-   createUser(email: string, pwd: string) {
-    return firebase.functions().httpsCallable('createUser')({
-      email: email,
-      password: pwd
-    })
-    .then(result => {
-      const msg = result.data.errorInfo ? result.data.errorInfo.message : result.data
-      return msg
-    })
-    .catch(error => {
-        return error
-    })
-   }
 }
 
 
