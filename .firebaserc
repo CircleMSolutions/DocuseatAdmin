@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "docuseat": {
+      "hosting": {
+        "dsAdmin-v8": [
+          "docuseat"
+        ]
+      }
+    }
+  }
+}

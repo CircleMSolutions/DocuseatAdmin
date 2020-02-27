@@ -122,8 +122,13 @@
               "devServerTarget": "dsAdmin-v8:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "dsAdmin-v8"
 }
