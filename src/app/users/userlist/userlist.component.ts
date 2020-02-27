@@ -30,7 +30,6 @@ export class UserlistComponent implements OnInit, OnDestroy {
   }
 
   refreshList() {
-    console.log('refresh')
     this.core.getUserList()
       .then(users => this.users = users.data)
   }
