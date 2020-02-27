@@ -3,11 +3,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { User } from 'firebase';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { AppState } from '../store/reducers';
 import * as fromAuth from '../store/actions/auth.actions'
 import { Store } from '@ngrx/store'
-import * as firebase from 'firebase/app'
 import 'firebase/functions'
 
 export interface IClaims {
