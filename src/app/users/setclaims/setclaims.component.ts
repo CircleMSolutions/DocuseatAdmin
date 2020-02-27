@@ -38,17 +38,17 @@ export class SetclaimsComponent implements OnInit, OnDestroy {
     this.event$.unsubscribe()
   }
 
-  setClaims(form: NgForm) {
+  setClaims() {
     this.message = ''
     this.isSetting = true
-    if (form.value.username !== '' && form.value.directory !== '0') {
+    if (this.form.get('email').value !== '') {
       let payload = {
-        email: form.value.username,
+        email: this.form.get('email').value,
         newClaims: {
-          incidentDirectory: form.value.directory,
-          canAdmin: form.value.canAdmin,
-          canLicenseScan: form.value.canLicenseScan,
-          canVinScan: form.value.canVinScan
+          incidentDirectory: this.form.get('directory').value,
+          canAdmin: this.form.get('canAdmin').value,
+          canLicenseScan: this.form.get('canLicenseScan').value,
+          canVinScan: this.form.get('canVinScan').value
         }
       }
       firebase.functions().httpsCallable('setClaims')({payload})
@@ -81,6 +81,7 @@ export class SetclaimsComponent implements OnInit, OnDestroy {
         this.isSetting = false;
       })
       .catch(err => {
+        console.log(err)
         this.isSetting = false
       })
   }
