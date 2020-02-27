@@ -1,0 +1,14 @@
+<div class="card p-4 h-100">
+    <h4 class="card-title">Get Custom Claims</h4>
+    <form>
+        <div class="input-group">
+            <select class="custom-select" id="username" #getUserList>
+                <option value="0" selected disabled>Select username</option>
+                <option [value]="user" *ngFor="let user of users">{{user}}</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" (click)="getClaims(getUserList.value)">Get</button>
+            </div>
+        </div>
+    </form>
+</div>

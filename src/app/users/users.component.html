@@ -1,68 +1,14 @@
 <div class="row">
     <div class="col-sm-6 mb-4">
-        <div class="card p-4 h-100">
-            <h4 class="card-title">Get Custom Claims</h4>
-            <form>
-                <div class="input-group">
-                    <select class="custom-select" id="username" #getUserList>
-                        <option value="0" selected disabled>Select username</option>
-                        <option [value]="user" *ngFor="let user of users">{{user}}</option>
-                    </select>
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button" (click)="getClaims(getUserList.value)">Get</button>
-                    </div>
-                </div>
-                <div *ngIf="getClaims$ !== null">{{gcMessage}}</div>
-            </form>
-        </div>
+        <app-userlist></app-userlist>
     </div>
 
-    <div class="col-sm-6 mb-4">
-        <div class="card p-4 h-100" style="position: relative">
-            <div style="position: absolute; left:0; top:0; width:100%; height:100%; opacity: 0.5; background-color: darkgray; z-index: 100;" *ngIf="isSetting">
-                <div class="d-flex justify-content-center align-items-center" style="height:100%;">
-                    <div class="spinner-border text-light" style="height:6rem; width: 6rem;" role="status"></div>
-                </div>
-            </div>
-            <form>
-                <h4 class="card-title">Set Custom Claims</h4>
-                <div class="form-group mb-3">
-                    <label for="email">Username</label>
-                    <input class="form-control" type="text" id="email" [value]="scUser?.email" disabled #setEmail>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="directory">Directory</label>
-                    <select class="custom-select" id="directory" [selectedIndex]="scUser?.dirIndex" #directory>
-                        <option value="0" selected disabled>Select directory</option>
-                        <option [value]="directory" *ngFor="let directory of directories">{{directory}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" [checked]="scUser?.canAdmin" id="canAdmin" #canAdmin>
-                        <label class="form-check-label" for="canAdmin">Can Admin</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" [checked]="scUser?.canLicenseScan" id="canLicenseScan" #canLicenseScan>
-                        <label class="form-check-label" for="canAdmin">Can Scan License</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" [checked]="scUser?.canVinScan" id="canVinScan" #canVinScan>
-                        <label class="form-check-label" for="canAdmin">Can Scan VIN</label>
-                    </div>
-                </div>
-                <button class="btn btn-primary mb-2" (click)="setClaims(setEmail.value, directory.value, canAdmin.checked, canLicenseScan.checked, canVinScan.checked)">Set</button>
-            </form>
-            {{scMessage}}
-        </div>
+    <div class="col-sm-6 mb-4 ">
+        <app-setclaims></app-setclaims>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-6 mb-4">
+<div class="row ">
+    <div class="col-sm-6 mb-4 ">
         <app-createuser></app-createuser>
     </div>
 </div>

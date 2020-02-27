@@ -1,5 +1,5 @@
 <div class="card p-4 h-100" style="position: relative">
-    <div style="position: absolute; left:0; top:0; width:100%; height:100%; opacity: 0.5; background-color: darkgray; z-index: 100;" *ngIf="(createState$ | async).isSetting">
+    <div style="position: absolute; left:0; top:0; width:100%; height:100%; opacity: 0.5; background-color: darkgray; z-index: 100;" *ngIf="isSetting">
         <div class="d-flex justify-content-center align-items-center" style="height:100%;">
             <div class="spinner-border text-light" style="height:6rem; width: 6rem;" role="status"></div>
         </div>
@@ -19,6 +19,6 @@
             <input class="form-control" type="text" name="confirmpwd" ngModel>
         </div>
         <button type="submit" class="btn btn-primary mb-2">Create User</button>
-        <div class="mt-4 text-danger">{{(createState$ | async).message}}</div>
+        <div class="mt-4 text-danger">{{message}}</div>
     </form>
 </div>

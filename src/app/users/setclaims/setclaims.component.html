@@ -1,0 +1,40 @@
+<div class="card p-4 h-100" style="position: relative">
+    <div style="position: absolute; left:0; top:0; width:100%; height:100%; opacity: 0.5; background-color: darkgray; z-index: 100;" *ngIf="isSetting">
+        <div class="d-flex justify-content-center align-items-center" style="height:100%;">
+            <div class="spinner-border text-light" style="height:6rem; width: 6rem;" role="status"></div>
+        </div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="setClaims()">
+        <div>
+            <h4 class="card-title">Set Custom Claims</h4>
+            <div class="form-group mb-3">
+                <label for="email">Username</label>
+                <input class="form-control" type="text" id="email" formControlName="email">
+            </div>
+            <div class="form-group mb-3">
+                <label for="directory">Username</label>
+                <input class="form-control" type="text" id="directory" formControlName="directory">
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="canAdmin" formControlName="canAdmin">
+                    <label class="form-check-label" for="canAdmin">Can Admin</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="canLicenseScan" formControlName="canLicenseScan">
+                    <label class="form-check-label" for="canAdmin">Can Scan License</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="canVinScan" formControlName="canVinScan">
+                    <label class="form-check-label" for="canAdmin">Can Scan VIN</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Set</button>
+        </div>
+    </form>
+    {{message}}
+</div>

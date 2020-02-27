@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { CoreService } from 'src/app/core/core.service';
+import { EventEmitter } from '@angular/core'
+import { ComponentEvent } from '../users.component';
 
 interface IAsyncState {
   isSetting: boolean, 
@@ -15,8 +17,8 @@ interface IAsyncState {
 })
 export class CreateuserComponent implements OnInit {
 
-  createState$: BehaviorSubject<IAsyncState> = new BehaviorSubject({isSetting: false, message: ''})
-  
+  isSetting: boolean = false
+  message: string = ''
 
   constructor(private core: CoreService) { }
 
@@ -24,17 +26,24 @@ export class CreateuserComponent implements OnInit {
   }
 
   createUser(form: NgForm) {
-    this.createState$.next({isSetting: true, message: ''})
+    this.message = ''
+    this.isSetting = true
     if (form.value.pwd !== form.value.confirmpwd) {
-      this.createState$.next({isSetting: false, message: 'Confirm password does not match'})
+      this.isSetting = false
+      this.message = 'Confirm password does not match'
       return
     }
     this.core.createUser(form.value.email, form.value.pwd)
-    .then(result => {
-      this.createState$.next({isSetting: false, message: result})
+    .then((result: string) => {
+      this.isSetting = false
+      this.message = result
+      if(result.endsWith('successfully')) {
+        this.core.userCompEvent.next({type: 'created', payload: ''})
+      }
     })
     .catch(error => {
-      this.createState$.next({isSetting: false, message: 'Unhandled Error'})
+      this.isSetting = false
+      this.message = 'Unhandled Error'
         console.log(error)
       })
   }

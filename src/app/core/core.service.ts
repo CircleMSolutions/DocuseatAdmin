@@ -1,10 +1,18 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app'
+import { Subject } from 'rxjs';
+
+export interface UserComponentEvent {
+  type: string;
+  payload: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoreService {
+
+  userCompEvent: Subject<UserComponentEvent> = new Subject()
 
   constructor() { }
 
@@ -20,5 +28,9 @@ export class CoreService {
     .catch(error => {
         return error
     })
+   }
+
+   getUserList() {
+    return firebase.functions().httpsCallable('getUserList')({})
    }
 }

@@ -28,11 +28,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { MessagesComponent } from './messages/messages.component';
 import { SplashComponent } from './splash/splash.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireAuthGuard, AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { CreateuserComponent } from './users/createuser/createuser.component';
 import { CoreService } from './core/core.service';
+import { UserlistComponent } from './users/userlist/userlist.component';
+import { SetclaimsComponent } from './users/setclaims/setclaims.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { CoreService } from './core/core.service';
     MessagesComponent,
     SplashComponent,
     CreateuserComponent,
+    UserlistComponent,
+    SetclaimsComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,8 @@ import { CoreService } from './core/core.service';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthService,
