@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CoreService } from 'src/app/core/core.service';
 import { NgForm } from '@angular/forms'
 import * as firebase from 'firebase/app'
 import { FormBuilder, Validators } from '@angular/forms'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-setclaims',
   templateUrl: './setclaims.component.html',
   styleUrls: ['./setclaims.component.scss']
 })
-export class SetclaimsComponent implements OnInit {
+export class SetclaimsComponent implements OnInit, OnDestroy {
 
   isSetting: boolean = false;
   message: string = ''
+  event$: Subscription
 
   form = this.fb.group({
     email: [''],
@@ -25,6 +27,15 @@ export class SetclaimsComponent implements OnInit {
   constructor(private core: CoreService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.event$ = this.core.userCompEvent.subscribe(e => {
+      if (e.type === 'getclaims') {
+        this.getClaims(e.payload)
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.event$.unsubscribe()
   }
 
   setClaims(form: NgForm) {
@@ -63,12 +74,10 @@ export class SetclaimsComponent implements OnInit {
         this.form.patchValue({
           email: username,
           directory: claims.data.incidentDirectory,
+          canAdmin: claims.data.canAdmin,
+          canLicenseScan: claims.data.canLicenseScan,
+          canVinScan: claims.data.canVinScan
         })
-        // this.form.cont
-        // this.scUser = claims.data
-        // const dirIndex = this.directories.indexOf(claims.data.incidentDirectory)
-        // this.scUser.dirIndex = dirIndex > -1 ? dirIndex + 1 : 0
-        // this.scUser.email = username
         this.isSetting = false;
       })
       .catch(err => {

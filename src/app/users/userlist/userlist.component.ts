@@ -24,6 +24,10 @@ export class UserlistComponent implements OnInit, OnDestroy {
       }
     })
   }
+
+  getClaims(username: string) {
+    this.core.userCompEvent.next({type: 'getclaims', payload: username})
+  }
   
   ngOnDestroy(): void {
     this.event$.unsubscribe()
