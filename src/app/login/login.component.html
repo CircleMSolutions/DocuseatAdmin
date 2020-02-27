@@ -1,0 +1,24 @@
+<div class="col">
+    <div class="card mx-auto">
+        <div class="card-body">
+            <h4 class="card-title">Login</h4>
+            <form>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Username / Email" type="text" #username>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Password" type="password" #pwd>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" href="#" class="btn btn-primary" (click)="$event.preventDefault();login(username.value, pwd.value)">
+                        <span *ngIf="!loading">Login</span>
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <small class="text-danger" *ngIf="message">{{message}}</small>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
