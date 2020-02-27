@@ -18,7 +18,7 @@ export class UserlistComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.refreshList()
-    const event$ = this.core.userCompEvent.subscribe(e => {
+    this.event$ = this.core.userCompEvent.subscribe(e => {
       if(e.type === 'created') {
         this.refreshList()
       }
