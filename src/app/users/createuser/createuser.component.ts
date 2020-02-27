@@ -1,9 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CoreService } from 'src/app/core/core.service';
-import { EventEmitter } from '@angular/core'
-import { ComponentEvent } from '../users.component';
 
 interface IAsyncState {
   isSetting: boolean, 
